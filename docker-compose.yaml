@@ -1,0 +1,34 @@
+services:
+  lsc_db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - lscdb_data:/var/lib/postgresql/data
+    networks:
+      - app
+
+  lsc:
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    volumes:
+      - ./app:/app/app
+      - ./pyproject.toml:/app/pyproject.toml
+      - ./README.md:/app/README.md
+    depends_on:
+      - lsc_db
+    restart: always
+    networks:
+      - app
+
+volumes:
+  lscdb_data:
+
+networks:
+  app:
+    driver: bridge
