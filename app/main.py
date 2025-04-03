@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from app.core.db import init_db
 from app.core.config import settings
+from app.api.main import api_router
 
 
 @asynccontextmanager
@@ -19,7 +20,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-
-@app.get("/")
-def read_root():
-    return {"message": "Hello World"}
+app.include_router(
+    api_router,
+    prefix=settings.API,
+)

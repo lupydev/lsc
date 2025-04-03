@@ -17,7 +17,6 @@ engine = create_async_engine(
 async def init_db() -> None:
     async with engine.begin() as conn:
         # TODO: Aqui se agregan los modelos que se desean tener encuenta para crear las tablas en la base de datos
-        from app.models.user import User
 
         await conn.run_sync(SQLModel.metadata.create_all)
 

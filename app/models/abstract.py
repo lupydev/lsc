@@ -2,7 +2,7 @@ from datetime import datetime
 import sqlalchemy
 from sqlmodel import Field, SQLModel
 from uuid import UUID, uuid4
-from ..services import timing
+from ..utils import timing
 
 
 class Abstract(SQLModel):
@@ -23,3 +23,4 @@ class Abstract(SQLModel):
             "server_default": sqlalchemy.func.now(),
         },
     )
+    is_active: bool = Field(default=True)

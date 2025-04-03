@@ -21,4 +21,4 @@ class User(Abstract, table=True):
         index=True,
     )
     password: str = Field(min_length=6)
-    superuser: bool = Field(default=True)
+    is_superuser: bool = Field(default=False)
