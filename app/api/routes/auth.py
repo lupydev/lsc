@@ -5,8 +5,6 @@ from fastapi.security import OAuth2PasswordRequestForm
 from ...core.db import SessionDep
 from ...core.security import create_access_token, create_refresh_token
 from ...schemas.token import Token
-
-# from ...schemas.token import Token
 from ...services.token import token_refresh
 from ...services.user import authenticate
 from ...core.config import settings
